@@ -30,7 +30,7 @@ class Wheel
 	end
 
 	def circumference
-		diameter * Math::PI
+		diameter * Math::PI  # this was MATH::PI in the book but broke Math::PI works
 	end
 end
 
