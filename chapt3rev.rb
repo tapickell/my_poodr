@@ -2,9 +2,9 @@
 class Sprocket
 	attr_reader :chainring, :cog
 
-	def initialize(chainring, cog)
-		@chainring = chainring
-		@cog = cog
+	def initialize(args)
+		@chainring = args[:chainring]
+		@cog = args[:cog]
 	end
 
 	def ratio
@@ -17,9 +17,9 @@ end
 class Gear 
 	attr_reader :ratio, :diameter
 
-	def initialize(ratio, diameter)
-		@ratio = ratio
-		@diameter = diameter
+	def initialize(args)
+		@ratio = args[:ratio]
+		@diameter = args[:diameter]
 	end
 
 	def gear_inches
@@ -31,9 +31,9 @@ end
 class Wheel
 	attr_reader :rim, :tire
 
-	def initialize(rim, tire)
-		@rim = rim
-		@tire = tire
+	def initialize(args)
+		@rim = args[:rim]
+		@tire = args[:tire]
 	end
 
 	def diameter
@@ -45,6 +45,7 @@ class Wheel
 	end
 end
 
-@wheel = Wheel.new(26, 1.5)
-@sprocket = Sprocket.new(52, 11)
-puts Gear.new(@sprocket.ratio, @wheel.diameter).gear_inches
+@wheel = Wheel.new(:rim => 26, :tire => 1.5)
+@sprocket = Sprocket.new(:chainring => 52, :cog => 11)
+@gear = Gear.new(:ratio => @sprocket.ratio, :diameter => @wheel.diameter)
+puts @gear.gear_inches
