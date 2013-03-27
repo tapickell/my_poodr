@@ -13,8 +13,13 @@ class Gear
 	end
 
 	def gear_inches
-		round_object ? ratio * round_object.diameter : "Incomplete formula, only run gear_inches if you have provided a round object."
+		ratio * diameter
 	end
+
+	def diameter
+		round_object.diameter
+	end
+	
 end
 
 class Wheel
