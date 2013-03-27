@@ -1,11 +1,11 @@
 
 class Gear
-	attr_reader :chainring, :cog, :wheel
+	attr_reader :chainring, :cog, :round_object
 
-	def initialize(chainring, cog, rim, tire)
+	def initialize(chainring, cog, round_object=nil)
 		@chainring = chainring
 		@cog = cog
-		@wheel = Wheel.new(rim, tire)
+		@round_object = round_object
 	end
 
 	def ratio
@@ -13,7 +13,7 @@ class Gear
 	end
 
 	def gear_inches
-		ratio * wheel.diameter
+		round_object ? ratio * round_object.diameter : "Incomplete formula, only run gear_inches if you have provided a round object."
 	end
 end
 
@@ -38,3 +38,4 @@ end
 puts @wheel.circumference
 puts Gear.new(52, 11, @wheel).gear_inches
 puts Gear.new(30, 27).ratio
+puts Gear.new(30, 27).gear_inches
