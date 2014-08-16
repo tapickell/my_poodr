@@ -1,4 +1,3 @@
-
 class Gear
 	attr_reader :chainring, :cog, :wheel
 

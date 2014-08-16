@@ -1,4 +1,3 @@
-
 class Gear
 	attr_reader :chainring, :cog, :round_object
 
@@ -19,7 +18,7 @@ class Gear
 	def diameter
 		round_object.diameter
 	end
-	
+
 end
 
 class Wheel

@@ -1,51 +1,68 @@
+class Gear
+  attr_reader :chainring, :cog
 
-class Sprocket
-	attr_reader :chainring, :cog
+  def initialize(args)
+    @chainring = args[:chainring]
+    @cog = args[:cog]
+  end
+end
 
-	def initialize(args)
-		@chainring = args[:chainring]
-		@cog = args[:cog]
-	end
+class Ratio
+  attr_reader :primary, :secondary
 
-	def ratio
-		chainring / cog.to_f
+  def initialize(args)
+    @primary = args[:primary]
+    @secondary = args[:secondary]
   end
 
+  def calculate
+    primary / secondary.to_f
+  end
 end
-# changed gear to sprocket to better represent the domain
-#  this may be a bit early but was buggin me
-class Gear 
-	attr_reader :ratio, :diameter
 
-	def initialize(args)
-		@ratio = args[:ratio]
-		@diameter = args[:diameter]
-	end
+class GainRatio
+  attr_reader :gear_ratio, :radius_ratio
 
-	def gear_inches
-		ratio * diameter
-	end
+  def initialize(args)
+    @gear_ratio = args[:gear_ratio]
+    @radius_ratio = args[:radius_ratio]
+  end
 
+  def calculate
+    radius_ratio * gear_ratio
+  end
+end
+
+class GearInches
+  attr_reader :gear_ratio, :diameter
+
+  def initialize(args)
+    @ratio = args[:gear_ratio]
+    @diameter = args[:diameter]
+  end
+
+  def calculate
+    gear_ratio * diameter
+  end
 end
 
 class Wheel
-	attr_reader :rim, :tire
+  attr_reader :rim, :tire
 
-	def initialize(args)
-		@rim = args[:rim]
-		@tire = args[:tire]
-	end
+  def initialize(args)
+    @rim = args[:rim]
+    @tire = args[:tire]
+  end
 
-	def diameter
-		rim + (tire * 2)
-	end
+  def radius
+    diameter / 2
+  end
 
-	def circumference
-		diameter * Math::PI
-	end
+  def diameter
+    rim + (tire * 2)
+  end
+
+  def circumference
+    diameter * Math::PI
+  end
 end
-
-@wheel = Wheel.new(:rim => 26, :tire => 1.5)
-@sprocket = Sprocket.new(:chainring => 52, :cog => 11)
-@gear = Gear.new(:ratio => @sprocket.ratio, :diameter => @wheel.diameter)
-puts @gear.gear_inches
