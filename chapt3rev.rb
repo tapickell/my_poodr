@@ -55,7 +55,7 @@ class Wheel
   end
 
   def radius
-    diameter / 2.to_f
+    diameter / 2
   end
 
   def diameter
