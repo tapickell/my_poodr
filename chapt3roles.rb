@@ -1,3 +1,6 @@
+# I would like to refactor this to work with roles instead of individual classes
+# I am not sure if I should use extend or something else to introduce roles
+
 class Gear
   attr_reader :chainring, :cog
 
